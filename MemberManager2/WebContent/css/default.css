@@ -60,3 +60,17 @@
 		padding: 15px;
 	}
 	
+	input[type=submit]{
+		background-color: rgb(237,0,140);
+		color: white;
+		border: 3px solid white;
+		padding: 3px;
+		font-weight: bold;
+	}
+	
+	input[type=submit]:hover{
+		background-color: white;
+		color: rgb(237,0,140);
+		border: 3px solid rgb(237,0,140);
+	}
+	

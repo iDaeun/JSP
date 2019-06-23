@@ -32,15 +32,15 @@
 	<table>
 		<tr>
 			<td>아이디</td>
-			<td><input type="text" name="uId"></td>
+			<td><input type="text" name="uId" required></td>
 		</tr>
 		<tr>
 			<td>비밀번호</td>
-			<td><input type="password" name="uPw"></td>
+			<td><input type="password" name="uPw" required></td>
 		</tr>
 		<tr>
 			<td></td>
-			<td><input type="submit" name="로 그 인"></td>
+			<td><input type="submit" value="로 그 인"></td>
 		</tr>
 	</table>
 	</form>

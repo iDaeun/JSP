@@ -48,7 +48,7 @@
 		</tr>
 		<tr>
 			<td></td>
-			<td><input type="submit" name="회 원 가 입"></td>
+			<td><input type="submit" value="회 원 가 입"></td>
 		</tr>
 	</table>
 	</form>
