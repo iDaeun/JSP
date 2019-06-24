@@ -60,6 +60,10 @@
 		padding: 15px;
 	}
 	
+	input[type=text], input[type=password], input[type=email]{
+		height: 30px;
+	}
+	
 	input[type=submit]{
 		background-color: rgb(237,0,140);
 		color: white;
@@ -72,5 +76,9 @@
 		background-color: white;
 		color: rgb(237,0,140);
 		border: 3px solid rgb(237,0,140);
+	}
+	
+	table{
+		padding: 5px;
 	}
 	

@@ -32,11 +32,11 @@
 	<table>
 		<tr>
 			<td>아이디</td>
-			<td><input type="text" name="uId" required></td>
+			<td><input type="text" name="uId" placeholder="아이디를 입력해주세요" required></td>
 		</tr>
 		<tr>
 			<td>비밀번호</td>
-			<td><input type="password" name="uPw" required></td>
+			<td><input type="password" name="uPw" placeholder="비밀번호를 입력해주세요" required></td>
 		</tr>
 		<tr>
 			<td></td>
