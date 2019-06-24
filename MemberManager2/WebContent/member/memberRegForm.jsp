@@ -8,7 +8,7 @@
 <style>
 </style>
 <!-- css파일 연결해주기 -->
-<link href="/mm/css/default.css" rel="stylesheet" type="text/css">
+<link href="/m2/css/default.css" rel="stylesheet" type="text/css">
 <!-- 구글폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Merienda+One&display=swap" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -32,15 +32,15 @@
 	<table>
 		<tr>
 			<td>아이디(이메일)</td>
-			<td><input type="email" name="uId" required></td>
+			<td><input type="email" name="id" required></td>
 		</tr>
 		<tr>
 			<td>비밀번호</td>
-			<td><input type="password" name="uPw" required></td>
+			<td><input type="password" name="pw" required></td>
 		</tr>
 		<tr>
 			<td>이름</td>
-			<td><input type="text" name="uName" required></td>
+			<td><input type="text" name="name" required></td>
 		</tr>
 		<tr>
 			<td>사진</td>

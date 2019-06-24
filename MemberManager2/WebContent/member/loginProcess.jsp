@@ -8,7 +8,7 @@
 <style>
 </style>
 <!-- css파일 연결해주기 -->
-<link href="/mm/css/default.css" rel="stylesheet" type="text/css">
+<link href="/m2/css/default.css" rel="stylesheet" type="text/css">
 <!-- 구글폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Merienda+One&display=swap" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
