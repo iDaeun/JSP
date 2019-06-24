@@ -64,6 +64,9 @@
 			<td><input type="file" name="uPhoto" required></td>
 		</tr>
 		<tr>
+			<td>회원가입 날짜</td>
+			<td style="font-weight: bold"><%= member.getRegisterDate() %></td>
+		</tr>
 	</table>	
 </div>
 <!-- contents 시작 -->
