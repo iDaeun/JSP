@@ -9,7 +9,16 @@
 <!-- 자바빈 사용 -->
 <jsp:useBean id="member" class="member.MemberInfo"/>
 <jsp:setProperty property="*" name="member"/>
-
+	
+	<%
+		if(member.getPhoto() == null){
+			member.setPhoto("noimg.jpg");
+		}
+	
+	//***내장객체에 회원정보 객체를 저장
+	application.setAttribute(member.getId(), member);
+	
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,21 +35,14 @@
 
 <body>
 <div id="main_wrap">
-<%-- <%	
-	request.setCharacterEncoding("utf-8");
-	
-	String userId = request.getParameter("uId");
-	String userPw = request.getParameter("uPw");
-	String userName = request.getParameter("uName");
-%> --%>
 
 <!-- 해더 시작 , 상대경로 -->
 <%@include file="../frame/header.jsp" %>
-<!-- 해더 시작 -->
+<!-- 해더 끝 -->
 
 <!-- nav 시작 -->
 <%@include file="../frame/nav.jsp" %>
-<!-- nav 시작 -->
+<!-- nav 끝 -->
 
 <!-- contents 시작 -->
 <div id="contents">
@@ -54,7 +56,7 @@
 		</tr>
 		<tr>
 			<td>비밀번호</td>
-			<td><input type="password" name="uPw" value="<%= member.getPw()%>"></td>
+			<td><input type="text" name="uPw" value="<%= member.getPw()%>"></td>
 		</tr>
 		<tr>
 			<td>이름</td>
@@ -68,10 +70,11 @@
 			<td>회원가입 날짜</td>
 			<td style="font-weight: bold"><%= member.getRegisterDate() %></td>
 		</tr>
-	</table>	
+	</table>
+	<h3>회원가입이 완료되었습니다!</h3>	
 </div>
-<!-- contents 시작 -->
-	
+
+<!-- contents 끝 -->	
 
 <!-- footer 시작 -->
 <%@include file="../frame/footer.jsp" %>

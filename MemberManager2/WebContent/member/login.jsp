@@ -1,5 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%
+    /* 저장한 아이디가 있으면 브라우저 재접속시 보이게끔 */
+    // 저장한 아이디 있는지 확인
+    String save="";
+    
+    Cookie[] cookies = request.getCookies();
+       	for(int i=0; i<cookies.length; i++){
+    		if(cookies[i].getName().equals("savedId")){
+    			save = cookies[i].getValue();
+    		} 
+    		
+    	}
+ 
+    // 저장한 아이디 -> input의 value값에 표시
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +38,7 @@
 
 <!-- nav 시작 -->
 <%@include file="../frame/nav.jsp" %>
-<!-- nav 시작 -->
+<!-- nav 끝 -->
 
 <!-- contents 시작 -->
 <div id="contents">
@@ -32,20 +48,20 @@
 	<table>
 		<tr>
 			<td>아이디</td>
-			<td><input type="text" name="uId" placeholder="아이디를 입력해주세요" required></td>
+			<td><input type="text" name="uId" value="<%=save %>" required></td>
 		</tr>
 		<tr>
 			<td>비밀번호</td>
 			<td><input type="password" name="uPw" placeholder="비밀번호를 입력해주세요" required></td>
 		</tr>
 		<tr>
-			<td></td>
 			<td><input type="submit" value="로 그 인"></td>
+			<td>아이디 저장<input type="checkbox" name="save" value="on"></td>
 		</tr>
 	</table>
 	</form>
 </div>
-<!-- contents 시작 -->
+<!-- contents 끝 -->
 	
 
 <!-- footer 시작 -->

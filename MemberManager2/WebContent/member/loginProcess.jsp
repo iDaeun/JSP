@@ -1,74 +1,59 @@
+<%@page import="member.MemberInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-</style>
-<!-- css파일 연결해주기 -->
-<link href="/m2/css/default.css" rel="stylesheet" type="text/css">
-<!-- 구글폰트 -->
-<link href="https://fonts.googleapis.com/css?family=Merienda+One&display=swap" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-</head>
-
-<body>
-<div id="main_wrap">
-<% 
+    
+    <%
 	String userId = request.getParameter("uId");	
 	String userPw = request.getParameter("uPw");
 	
-	if(userId != null && userPw != null && userId.equals("admin") && userPw.equals("admin")){
+	//boolean loginChk = false;
+	
+	/* 
+		1. 사용자가 입력한 id로 회원 정보 검색
+		2. 존재한다 : 해당 객체를 받는다.
+		     해당객체의 pw와 사용자가 입력한 pw비교 
+		     같다면 -> 로그인 처리 : 세션영역에 회원정보를 저장함
+		     틀리면 -> 요류 메시지 전달 -> 로그인 페이지로 이동
+		3. 존재하지 않는다 : 오류 메시지 전달 -> 로그인 페이지로 이동
+	*/
+		
+		// 1. 사용자가 입력한 id로 회원 정보 검색
+		// ***회원가입 시 : application객체의 속성에 정보 저장함!
+		MemberInfo memberInfo = (MemberInfo)application.getAttribute(userId);
+		
+		if(memberInfo != null && memberInfo.getPw().equals(userPw)){
+		//회원 정보가 존재 && 비밀번호가 일치
+		//###세션에 회원 로그인 정보를 저장 (LoginInfo객체로!)
+		session.setAttribute("loginInfo", memberInfo.toLoginInfo());
+		
+		//아이디 저장 체크 표시 -> cookie로 저장하기 (유효기간:5분)
+		String save = request.getParameter("save");
+		
+		out.println(save);
+		if(save != null && save.equals("on")){
+			Cookie c = new Cookie("savedId",userId);
+			c.setMaxAge(60*5);
+			response.addCookie(c); 
+		} 
+		
+		//로그인 처리 후 메인 페이지로 이동
+		response.sendRedirect(request.getContextPath());
+			
+		} else {
+			
+	//id 검색결과가 null 또는 pw 비교해서 같이 않은 경우
+	%>
+			<script>
+				alert('아이디 혹은 비밀번호가 틀립니다.\n다시 로그인 해주세요');
+				history.go(-1);
+			</script>
+		<%
+			}
+		%>
+	
+
+<!-- 	if(userId != null && userPw != null && userId.equals("admin") && userPw.equals("admin")){
 		
 		/* /mm 들어옴 */
 		response.sendRedirect(request.getContextPath());
-	}
-%>
-
-<!-- 해더 시작 , 상대경로 -->
-<%@include file="../frame/header.jsp" %>
-<!-- 해더 끝 -->
-
-<!-- nav 시작 -->
-<%@include file="../frame/nav.jsp" %>
-<!-- nav 끝작 -->
-
-<!-- contents 시작 -->
-<div id="contents">
-	<h3>로그인 요청 처리페이지</h3>
-	<hr>
-	<table>
-		<tr>
-			<td>아이디</td>
-			<td><input type="text" name="uId" value="<%= userId %>"></td>
-		</tr>
-		<tr>
-			<td>비밀번호</td>
-			<td><input type="text" name="uPw" value="<%= userPw %>"></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-		</tr>
-	</table>
-</div>
-<!-- contents 끝 -->
-	
-
-<!-- footer 시작 -->
-<%@include file="../frame/footer.jsp" %>
-
-<!-- 자바빈 -->
-<jsp:useBean id="loginInfo" class="member.memberInfo" scope="session"/>
-
-<jsp:setProperty property="id" name="loginInfo" value="<%=userId %>"/>
-<%
-	loginInfo.setPw(userPw);
-%>
-
-<!-- footer 끝 -->
-</div>
-</body>
-</html>
+	}  -->

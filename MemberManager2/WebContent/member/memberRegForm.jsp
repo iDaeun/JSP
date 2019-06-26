@@ -28,7 +28,7 @@
 <div id="contents">
 	<h3>회원가입 페이지</h3>
 	<hr>
-	<form action="memberReg.jsp" method="post">
+	<form action="memberReg2.jsp" method="post">
 	<table>
 		<tr>
 			<td>아이디(이메일)</td>
@@ -44,7 +44,7 @@
 		</tr>
 		<tr>
 			<td>사진</td>
-			<td><input type="file" name="uPhoto" required></td>
+			<td><input type="file" name="uPhoto"></td>
 		</tr>
 		<tr>
 			<td></td>

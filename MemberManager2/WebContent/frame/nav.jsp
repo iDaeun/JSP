@@ -7,7 +7,8 @@
 		<!-- 시스템에서 자동적으로 경로 설정해줌! -->
 		<li><a href="<%= request.getContextPath() %>/member/login.jsp">로그인</a></li>
 		<li><a href="<%= request.getContextPath() %>/member/memberRegForm.jsp">회원가입</a></li>
-		<li><a href="<%= request.getContextPath() %>/member/myPage.jsp">회원리스트</a></li>
+		<li><a href="<%= request.getContextPath() %>/member/myPage.jsp">마이페이지</a></li>
+		<li><a href="<%= request.getContextPath() %>/member/memberList.jsp">회원리스트</a></li>
 		<li><a href="<%= request.getContextPath() %>/member/logout.jsp">LOGOUT</a></li>
 	</ul>
 </div>
