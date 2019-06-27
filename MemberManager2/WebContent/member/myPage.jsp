@@ -36,10 +36,9 @@
 		<% if(loginInfo != null){ %>	
 		<h2>회원 정보 페이지</h2>
 		<hr>
-		
 			<img src="../images/<%=loginInfo.getuPhoto() %>">
-			<h4>이름: <%=loginInfo.getuName() %></h4>
-			<h4>아이디: <%=loginInfo.getuId() %></h4>
+			<h4>이름: <%=loginInfo.getuName() %> / ${sessionScope.loginInfo.uName}</h4>
+			<h4>아이디: <%=loginInfo.getuId() %>/ ${sessionScope.loginInfo.uId}</h4>
 			
 			<%} else { %>
 			
