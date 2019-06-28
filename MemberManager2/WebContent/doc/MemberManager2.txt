@@ -1,10 +1,117 @@
-1. 회원가입 : 가입 폼 -> 가입처리 , 출력
-	===> 저장된 데이터를 기본객체에 저장
-2. 로그인 : 아이디 == 비번 로그인처리
-	===> 1) id값으로 기본객체 속성에서 검색
-		    2) 검색된 결과 있다면 회원정보 객체 받아온다.
-		    3) 회원 정보 객체에서 pw가져온다
-		    4) 사용자가 입력한 pw와 3번에서 가져온 pw 비교
-		    5) 비교 결과가 같다면 로그인 처리
-		    6) 로그인 정보 객체 생성 session객체에 저장
-		    7) 마이페이지 : session에 저장된 사용자 정보를 확인­­
+								■ MemberManager2 GuideLine ■
+************************************************************************************************
+[Page Description]
+#index.jsp : 메인페이지
+
+frame >
+#header.jsp : header
+#nav.jsp : menu -> 페이지 이동: 
+	ver.01:JSP사용 / ver.02:EL사용 / ver.03:JSTL url태그 사용
+	- 로그인(login.jsp)/회원가입(memberRegForm.jsp)/
+	- 마이페이지1(myPage.jsp)/마이페이지2(myPage2.jsp)/
+	- 회원리스트1(memberList.jsp)/회원리스트2(memberList2.jsp)/
+	- 로그아웃(logout.jsp)
+#footer.jsp : footer
+
+member >
+#list.jsp :
+
+#login.jsp : 로그인 폼  -> 데이터 submit -> loginProcess.jsp으로 이동
+#loginProcess.jsp : 로그인 처리페이지 -> 로그인 처리 후 메인페이지로 이동
+
+#logout.jsp : 로그아웃 처리페이지 -> 로그아웃 처리 후 메인페이지로 이동
+
+#memberList.jsp : 회원리스트 ver.01
+	- 회원 아이디, 이름, 비밀번호, 이미지 리스트로 출력
+#memberList2.jsp : 회원리스트 ver.02 (EL,JSTL활용)
+	- 회원 아이디, 이름, 비밀번호, 가입일, 이미지 리스트로 출력
+
+#memberRegForm.jsp : 회원가입 페이지 -> 데이터 submit -> memberReg2.jsp으로 이동
+#memberReg.jsp : 회원가입요청 처리 페이지 ver.01~02 (자바빈 활용)
+	- table안에 회원가입 정보 표시해줌
+#memberReg2.jsp :회원가입요청 처리 페이지 ver.03 (EL활용)
+	- MemberInfo.java의 makeHtmlDiv()호출하여 회원가입 정보 출력해줌 
+
+#myPage.jsp : 회원정보 페이지 ver.01
+	- 로그인한 회원의 정보 출력 (이름, 아이디)
+#myPage2.jsp : 회원정보 페이지 ver.02 (EL,JSTL활용)
+	- 로그인한 회원의 정보 출력 (이름, 아이디, 가입일시)
+
+css >
+#default.css : css file
+
+Java Resources >
+#MemberInfo.java : 회원 정보 저장 usebean class -> 회원가입시 정보 저장하는 객체
+	- toLoginInfo() : MemberInfo객체 -> LoginInfo객체로 반환하는 메소드
+#LoginInfo.java : 로그인 처리 과정때 세션에 로그인 정보를 session에 LoginInfo객체로 저장(MemberInfo.java의 toLoginInfo메소드 통해서)
+
+Library >
+- jstl.jar
+- standard.jar
+
+************************************************************************************************
+[Flow]
+1. 회원가입 : 
+
+	데이터 입력 (id, pw, name, file)
+	▶  <memberRegForm.jsp> 
+		
+	회원가입 데이터 받아 처리하기
+	▶  <memberReg.jsp>
+		- ver.01
+		<memberRegForm.jsp>에서 입력한 데이터 getParameter로 가져와서 출력
+		- ver.02
+		자바빈 활용 -> 전달받은 데이터 <MemberInfo.java>에 저장하기 -> 출력
+	▶  <memberReg2.jsp>
+		- ver.03
+		1) 자바빈 활용 -> 전달받은 데이터 <MemberInfo.java>에 저장하기
+		2) 내장객체(application)에 회원정보 저장 <Key=member.getId(), Value=member>
+		3) EL활용 -> makeHtmlDiv()호출해서 한줄로 출력하기
+
+2. 로그인 : 
+
+	데이터 입력 (id, pw)
+	▶  <login.jsp>
+		저장한 아이디 있으면 브라우저 재접속시 표시함
+		1) 저장한 cookie값을 불러오기
+		2) "savedId"라는 name이 있다면 그 아이디 표시
+		
+	로그인 데이터 받아 처리하기
+	▶  <loginProcess.jsp>
+		아이디 eq 비번 -> 로그인처리
+		1) 사용자가 입력한 id로 회원 정보 검색(application.getAttribute)
+		2) id 존재O : 해당 객체 받기
+		     해당객체의 pw와 사용자가 입력한 pw비교 (일치하는지)
+		3-1) 같다면 -> 로그인 처리 : 세션영역에 회원정보를 저장함
+		  session.setAttribute("loginInfo", memberInfo.toLoginInfo())   
+		3-1-1) 로그인 당시 아이디 저장 체크 표시했을때 -> cookie로 저장 (유효기간:5분)
+		3-1-2) 로그인 처리 후 메인페이지로 이동    
+		3-2) id 틀리거나 존재X : 오류 메시지 전달 -> 로그인 페이지로 이동
+		
+3. 마이페이지: 
+	
+	로그인 후 -> 로그인한 회원의 정보 보여줌
+	▶  <myPage.jsp>,<myPage2.jsp>
+	ver.01:JSP사용 / ver.02:EL,JSTL사용
+		1) LoginInfo객체가 null이 아닐때 -> 이미지, 이름, 아이디, 가입일시 출력
+		2) null일때 = 로그인X -> 로그인 페이지로 이동
+		
+4. 회원리스트: 
+	
+	가입된 회원들의 정보 리스트로 보여줌
+	▶ <memberList.jsp>,<memberList2.jsp>
+	ver.01:JSP사용 / ver.02:EL,JSTL사용
+		1) Enumeration<String>형태로 application에 저장한 회원 정보 Key값 가져옴
+		2) "mListName"이라는 name으로 application에 저장
+		3) forEach문 -> "mListName"중에 @가 포함된 것만 걸러내기
+		4) 걸러낸 Key값을 직접참조를 통해 Value(memberInfo객체)를 구하기
+		5) table에 memberInfo객체를 참조하여 회원 id, name, pw, registerDate, photo 출력
+	
+5. 로그아웃:
+
+	로그아웃 기능
+	▶ <logout.jsp>
+		1) 현재 session강제 소멸 (로그인 한 정보는 session에 저장하기 때문)
+		2) 삭제 후 메인페이지로 이동
+		    
+		    
