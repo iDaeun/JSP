@@ -76,8 +76,9 @@ Library >
 		수정 폼 -> 기존 데이터 보여주기
 		수정한 데이터 입력 => application속성에 저장 (덮어씌우기)
 	
-4. 회원리스트: 
+4. 관리자페이지:
 
+	회원리스트: 
 	로그인: id - admin, pw - admin일때 => 관리자 페이지
 	가입된 회원들의 정보 리스트로 보여줌(index, count)(id, pw, name, pNum, photo, 레벨, 찜한 희망수업)
 	
@@ -85,7 +86,7 @@ Library >
 	
 	session에서 로그인 정보 삭제 -> 메인페이지로 이동
 	
-6. 탈퇴 [button]:
+6. 회원탈퇴 [button]:
 
 	application에서 해당 회원정보 삭제 -> 메인페이지로 이동 
 
