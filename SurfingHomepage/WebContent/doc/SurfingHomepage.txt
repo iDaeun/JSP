@@ -1,0 +1,98 @@
+										■ SurfingHomepage GuideLine ■
+**************************************************************************************************************
+□ Page Description
+
+# index.jsp : 메인페이지
+
+frame >
+# header.jsp : header
+# nav.jsp : menu -> 페이지 이동: 
+	ver.01:JSP사용 / ver.02:EL사용 / ver.03:JSTL url태그 사용
+	- 로그인(login.jsp)/회원가입(memberRegForm.jsp)/
+	- 마이페이지1(myPage.jsp)/마이페이지2(myPage2.jsp)/
+	- 회원리스트1(memberList.jsp)/회원리스트2(memberList2.jsp)/
+	- 로그아웃(logout.jsp)
+# footer.jsp : footer
+
+member >
+# list.jsp :
+
+# login.jsp : 로그인 폼  -> 데이터 submit -> loginProcess.jsp으로 이동
+# loginProcess.jsp : 로그인 처리페이지 -> 로그인 처리 후 메인페이지로 이동
+
+# logout.jsp : 로그아웃 처리페이지 -> 로그아웃 처리 후 메인페이지로 이동
+
+# memberList.jsp : 회원리스트 ver.01
+	- 회원 아이디, 이름, 비밀번호, 이미지 리스트로 출력
+# memberList2.jsp : 회원리스트 ver.02 (EL,JSTL활용)
+	- 회원 아이디, 이름, 비밀번호, 가입일, 이미지 리스트로 출력
+
+# memberRegForm.jsp : 회원가입 페이지 -> 데이터 submit -> memberReg2.jsp으로 이동
+# memberReg.jsp : 회원가입요청 처리 페이지 ver.01~02 (자바빈 활용)
+	- table안에 회원가입 정보 표시해줌
+# memberReg2.jsp :회원가입요청 처리 페이지 ver.03 (EL활용)
+	- MemberInfo.java의 makeHtmlDiv()호출하여 회원가입 정보 출력해줌 
+
+# myPage.jsp : 회원정보 페이지 ver.01
+	- 로그인한 회원의 정보 출력 (이름, 아이디)
+# myPage2.jsp : 회원정보 페이지 ver.02 (EL,JSTL활용)
+	- 로그인한 회원의 정보 출력 (이름, 아이디, 가입일시)
+
+css >
+#default.css : css file
+
+Java Resources >
+#MemberInfo.java : 회원 정보 저장 usebean class -> 회원가입시 정보 저장하는 객체
+	- toLoginInfo() : MemberInfo객체 -> LoginInfo객체로 반환하는 메소드
+#LoginInfo.java : 로그인 처리 과정때 세션에 로그인 정보를 session에 LoginInfo객체로 저장(MemberInfo.java의 toLoginInfo메소드 통해서)
+
+Library >
+- jstl.jar
+- standard.jar
+
+**************************************************************************************************************
+□ Flow
+
+1. 회원가입: 
+
+	데이터 입력 (id, pw, name, pNum, photo, level)	
+	회원가입 데이터 받아 처리하기 => application속성에 저장 
+
+2. 로그인: 
+
+	저장한 아이디 있으면 브라우저 재접속시 표시함
+	데이터 입력 (id, pw)
+	입력 후 submit전에 아이디 저장 여부 체크하기 => 체크시 id cookie에 저장
+		
+	로그인 데이터 받아 처리하기 => 로그인 정보 session속성에 저장
+	
+3. 마이페이지: 
+	
+	로그인 후 -> 로그인한 회원의 정보 보여줌 [기본정보]
+	희망 수업 목록 [상세정보], 수업 클릭 -> 이달의 수업목록으로 이동
+
+	3-1. 내 정보 수정:
+		
+		수정 폼 -> 기존 데이터 보여주기
+		수정한 데이터 입력 => application속성에 저장 (덮어씌우기)
+	
+4. 회원리스트: 
+
+	로그인: id - admin, pw - admin일때 => 관리자 페이지
+	가입된 회원들의 정보 리스트로 보여줌(index, count)(id, pw, name, pNum, photo, 레벨, 찜한 희망수업)
+	
+5. 로그아웃 [button]:
+	
+	session에서 로그인 정보 삭제 -> 메인페이지로 이동
+	
+6. 탈퇴 [button]:
+
+	application에서 해당 회원정보 삭제 -> 메인페이지로 이동 
+
+7. 수업 수강
+	이번달(FormatDate-> MM)수업리스트 보여줌 (초급, 중급, 고급) **우선은 매달 같은 수업을 열린다는 가정, 월표시 부분만 바꿔주기!
+		- 클래스 이름
+		- 강사 이름
+		- 가격
+		- 수업 희망 (예약) 클릭 -> 희망자 수 count++
+		    
