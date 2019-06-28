@@ -1,40 +1,41 @@
-								■ MemberManager2 GuideLine ■
-************************************************************************************************
-[Page Description]
-#index.jsp : 메인페이지
+										■ MemberManager2 GuideLine ■
+**************************************************************************************************************
+□ Page Description
+
+# index.jsp : 메인페이지
 
 frame >
-#header.jsp : header
-#nav.jsp : menu -> 페이지 이동: 
+# header.jsp : header
+# nav.jsp : menu -> 페이지 이동: 
 	ver.01:JSP사용 / ver.02:EL사용 / ver.03:JSTL url태그 사용
 	- 로그인(login.jsp)/회원가입(memberRegForm.jsp)/
 	- 마이페이지1(myPage.jsp)/마이페이지2(myPage2.jsp)/
 	- 회원리스트1(memberList.jsp)/회원리스트2(memberList2.jsp)/
 	- 로그아웃(logout.jsp)
-#footer.jsp : footer
+# footer.jsp : footer
 
 member >
-#list.jsp :
+# list.jsp :
 
-#login.jsp : 로그인 폼  -> 데이터 submit -> loginProcess.jsp으로 이동
-#loginProcess.jsp : 로그인 처리페이지 -> 로그인 처리 후 메인페이지로 이동
+# login.jsp : 로그인 폼  -> 데이터 submit -> loginProcess.jsp으로 이동
+# loginProcess.jsp : 로그인 처리페이지 -> 로그인 처리 후 메인페이지로 이동
 
-#logout.jsp : 로그아웃 처리페이지 -> 로그아웃 처리 후 메인페이지로 이동
+# logout.jsp : 로그아웃 처리페이지 -> 로그아웃 처리 후 메인페이지로 이동
 
-#memberList.jsp : 회원리스트 ver.01
+# memberList.jsp : 회원리스트 ver.01
 	- 회원 아이디, 이름, 비밀번호, 이미지 리스트로 출력
-#memberList2.jsp : 회원리스트 ver.02 (EL,JSTL활용)
+# memberList2.jsp : 회원리스트 ver.02 (EL,JSTL활용)
 	- 회원 아이디, 이름, 비밀번호, 가입일, 이미지 리스트로 출력
 
-#memberRegForm.jsp : 회원가입 페이지 -> 데이터 submit -> memberReg2.jsp으로 이동
-#memberReg.jsp : 회원가입요청 처리 페이지 ver.01~02 (자바빈 활용)
+# memberRegForm.jsp : 회원가입 페이지 -> 데이터 submit -> memberReg2.jsp으로 이동
+# memberReg.jsp : 회원가입요청 처리 페이지 ver.01~02 (자바빈 활용)
 	- table안에 회원가입 정보 표시해줌
-#memberReg2.jsp :회원가입요청 처리 페이지 ver.03 (EL활용)
+# memberReg2.jsp :회원가입요청 처리 페이지 ver.03 (EL활용)
 	- MemberInfo.java의 makeHtmlDiv()호출하여 회원가입 정보 출력해줌 
 
-#myPage.jsp : 회원정보 페이지 ver.01
+# myPage.jsp : 회원정보 페이지 ver.01
 	- 로그인한 회원의 정보 출력 (이름, 아이디)
-#myPage2.jsp : 회원정보 페이지 ver.02 (EL,JSTL활용)
+# myPage2.jsp : 회원정보 페이지 ver.02 (EL,JSTL활용)
 	- 로그인한 회원의 정보 출력 (이름, 아이디, 가입일시)
 
 css >
@@ -49,8 +50,9 @@ Library >
 - jstl.jar
 - standard.jar
 
-************************************************************************************************
-[Flow]
+**************************************************************************************************************
+□ Flow
+
 1. 회원가입 : 
 
 	데이터 입력 (id, pw, name, file)
