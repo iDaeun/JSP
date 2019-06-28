@@ -14,6 +14,14 @@ public class MemberInfo {
 		this.registerDate = new Date();
 	}
 	
+	public MemberInfo(String id, String pw, String name, String photo) {
+		this.id = id;
+		this.pw = pw;
+		this.name = name;
+		this.photo = photo;
+		this.registerDate = new Date();
+	}
+	
 	
 	public MemberInfo(String id, String pw, String name, String photo, Date registerDate) {
 		this.id = id;
@@ -98,7 +106,7 @@ public class MemberInfo {
 	
 	// MemberInfo객체 -> LoginInfo객체 반환 
 	public LoginInfo toLoginInfo() {
-		return new LoginInfo(id, name, photo);
+		return new LoginInfo(id, name, photo, registerDate);
 	}
 
 }

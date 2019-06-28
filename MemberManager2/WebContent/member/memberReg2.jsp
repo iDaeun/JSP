@@ -49,31 +49,9 @@
 <!-- 자바빈 -->
 	<h3>회원가입요청 처리 페이지</h3>
 	<hr>
-	<table>
-		<tr>
-			<td>아이디(이메일)</td>
-			<td><input type="email" name="uId" value="<%= member.getId()%>"></td>
-		</tr>
-		<tr>
-			<td>비밀번호</td>
-			<td><input type="text" name="uPw" value="<%= member.getPw()%>"></td>
-		</tr>
-		<tr>
-			<td>이름</td>
-			<td><input type="text" name="uName" value="<%= member.getName()%>"></td>
-		</tr>
-		<tr>
-			<td>사진</td>
-			<td><input type="file" name="uPhoto" required></td>
-		</tr>
-		<tr>
-			<td>회원가입 날짜</td>
-			<td style="font-weight: bold"><%= member.getRegisterDate() %></td>
-		</tr>
-	</table>
-	<h3>회원가입이 완료되었습니다!</h3>	
-</div>
-
+	<!-- EL -->
+	표현식: <%=member.makeHtmlDiv() %>
+	EL: ${member.makeHtmlDiv()}
 <!-- contents 끝 -->	
 
 <!-- footer 시작 -->

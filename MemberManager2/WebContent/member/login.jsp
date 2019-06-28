@@ -10,11 +10,8 @@
        	for(int i=0; i<cookies.length; i++){
     		if(cookies[i].getName().equals("savedId")){
     			save = cookies[i].getValue();
-    		} 
-    		
+    		} 	
     	}
- 
-    // 저장한 아이디 -> input의 value값에 표시
     %>
 <!DOCTYPE html>
 <html>
@@ -34,7 +31,7 @@
 <div id="main_wrap">
 <!-- 해더 시작 , 상대경로 -->
 <%@include file="../frame/header.jsp" %>
-<!-- 해더 시작 -->
+<!-- 해더 끝 -->
 
 <!-- nav 시작 -->
 <%@include file="../frame/nav.jsp" %>
