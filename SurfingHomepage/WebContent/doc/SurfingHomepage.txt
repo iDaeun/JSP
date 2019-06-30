@@ -56,7 +56,17 @@ Library >
 1. 회원가입: 
 
 	데이터 입력 (id, pw, name, pNum, photo, level)	
-	회원가입 데이터 받아 처리하기 => application속성에 저장 
+	▶ <RegForm.jsp> 
+		아이디 입력 후 [중복확인]버튼 -> application에 저장된 아이디가 있는지 확인
+		1) 있는 경우: 다른 아이디 입력 요청
+		2) 없는 경우: 계속 회원가입 진행
+	
+	회원가입 데이터 받아 처리하기 => 정보<member.java>에 저장, application속성에 저장 
+	▶ <RegProcess.jsp> 
+		1) 전달받은 정보 <member.java>에 저장
+		2) 흐름상 정보 유지를 위해 회원정보는 application속성에 저장
+		3) 회원가입된 정보 출력하기
+		4) 로그인 페이지로 이동
 
 2. 로그인: 
 
