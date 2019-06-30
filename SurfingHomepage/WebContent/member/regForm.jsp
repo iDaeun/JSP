@@ -26,20 +26,20 @@
 <style>
 </style>
 
-     <script>
-     		
+<!--      <script type="text/javascript">
+     		이렇게 하면 왜 페이지가 안넘어가지이.....ㅠ_ㅠ??
 	function submit(index){
 		if (index == 1){
-			document.regForm.action = 'checkId.jsp';
+			document.regForm.action = "checkId.jsp";
 		}
 		if (index == 2){
-			document.regForm.action = 'regProcess.jsp';
+			document.regForm.action = "regProcess.jsp";
 		}
-		document.regForm.submit();
+		/* document.regForm.submit(); */
 	}
      	
      </script>
-
+ -->
 </head>
 <body>
 
@@ -57,13 +57,13 @@
             <div id="ct">
                 <h2>REGISTER PAGE</h2>
 					
-					<form name="regForm" method="post">
+				<form name="regForm" method="post">
 					<table>
                 	<tr>
                 		<td>아이디</td>
                 		<td>
                 		<input type="text" name="id">
-                		<input type="button" value="중복체크" onclick="submit(1)">    
+                		<input type="submit" value="중복체크" onclick="javascript: form.action='checkId.jsp';" />  
                 		</td>
                 	</tr>
                 	<tr>
@@ -88,10 +88,10 @@
                 	</tr>
                 	<tr>
                 		<td></td>
-                		<td><input type="button" value="가입하기" onclick="submit(2)"></td>
+                		<td><input type="submit" value="가입하기" onclick="javascript: form.action='regProcess.jsp';" /></td>
                 	</tr>
                 </table>
-                </form>
+               </form>
             </div>
         </div>
         <!-- context 끝 -->
@@ -100,4 +100,5 @@
 		<%@include file="../frame/footer.jsp" %>
         <!-- footer 끝 -->
     </div>
+        
 </body></html>

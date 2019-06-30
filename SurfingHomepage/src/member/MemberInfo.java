@@ -108,6 +108,7 @@ public class MemberInfo {
 		str += "비밀번호: "+pw+"<br>";
 		str += "레벨: "+level+"<br>";
 		str += "가입일자: "+registerDate+"<br>";
+		str += "photo: "+photo+"<br>";
 		str += "</h3> \n";
 		str += "</div> \n";
 		

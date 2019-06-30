@@ -23,7 +23,9 @@
 				member.setPhoto("noimg");
 			}
 		
-		application.setAttribute(member.getId(), member);%>
+		application.setAttribute(member.getId(), member);
+		out.print("<h1>저장완료!</h1>");
+		%>
 		
 <!DOCTYPE html>
 <html>
