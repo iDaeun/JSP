@@ -122,6 +122,8 @@ public class MemberInfo {
 				+ ", level=" + level + ", registerDate=" + registerDate + "]";
 	}
 
-	
+	public LoginInfo toLoginInfo() {
+		return new LoginInfo(id,pw,name,pNum,photo,level);
+	}
 	
 }

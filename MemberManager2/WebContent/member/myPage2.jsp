@@ -47,7 +47,8 @@
 			<script>
 				alert('로그인 후 이용가능한 페이지입니다');
 				/* 여기서 왜 request.getContextPath()쓰면 홈으로 가질 못하는지? */
-				location.href="login.jsp";
+						/* => 갈 수 있 따 !!! */
+				location.href="<%= request.getContextPath() %>";
 			</script>
 		</c:if>
 </div>

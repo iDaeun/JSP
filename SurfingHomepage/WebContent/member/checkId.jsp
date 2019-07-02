@@ -14,26 +14,26 @@
  			<%
  			Enumeration names = application.getAttributeNames();
  			while(names.hasMoreElements()){
- 				String name = (String)names.nextElement();
- 				MemberInfo memberInfo = (MemberInfo)application.getAttribute(name);
- 				if(memberInfo.getId() == request.getParameter("id")) { %>
- 					alert('동일한 아이디가 있습니다!');
- 					history.go(-1);
- 			<%	
- 				break;
- 				} else {	%>
- 					alert('사용가능한 아이디입니다!');	
- 					history.go(-1);
- 			<%		
- 				break;
- 				}
- 			}
- 			%>
+ 				String name = (String)names.nextElement(); 
+				
+ 				if(name != null && name.contains("\\@")){
+	 				MemberInfo memberInfo = (MemberInfo)application.getAttribute(name);
+	 				/* null확인 + @로 걸러주기 */
+	 				
+		 				if(memberInfo.getId().equals(request.getParameter("id"))) { %> /* equals */
+		 					alert('동일한 아이디가 있습니다!');
+		 					history.go(-1);
+		 			<%	
+		 				} else {	%>
+		 					alert('사용가능한 아이디입니다!');	
+		 					history.go(-1);
+		 			<%		
+		 				}
+		 			}
+	 			}
+		 			%>
 </script>
 
-
-<style>
-</style>
 </head>
 <body>
 

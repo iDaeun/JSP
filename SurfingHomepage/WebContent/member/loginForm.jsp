@@ -1,5 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<!--     	데이터 입력
+		▶ <loginForm.jsp> 
+		1) 저장한 아이디 있으면 브라우저 재접속시 표시함
+		2) 데이터 입력 (id, pw)
+		3) 입력 후 submit전에 아이디 저장 여부 체크하기
+		4) submit -> <loginProcess.jsp>으로 보내기 -->
+    
+    <!-- 저장한 아이디 있으면 브라우저 재접속시 표시함 -->
+    <%
+    	String savedId = "";
+    	
+    	Cookie[] c = request.getCookies();
+    	for(int i=0; i<c.length; i++){
+    		if(c[i].getName().equals("savedId")){
+    			savedId = c[i].getValue();
+    		}
+    	}
+    %>
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,15 +56,18 @@
                 <table>
                 	<tr>
                 		<td>아이디</td>
-                		<td><input type="text" name="id"></td>
+                		<td>
+                		<input type="text" name="id" value="<%=savedId%>">
+                		아이디 저장 <input type="checkbox" name="save" value="checked">
+                		</td>
                 	</tr>
                 	<tr>
                 		<td>비밀번호</td>
                 		<td><input type="password" name="pw"></td>
                 	</tr>
                 	<tr>
-                		<td>아이디 저장</td>
-                		<td><input type="checkbox" name="save" value="checked"></td>
+                		<td></td>
+                		<td><input type="submit" value="로그인"></td>
                 	</tr>
                 </table>
                 </form>

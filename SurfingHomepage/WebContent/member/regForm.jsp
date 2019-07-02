@@ -84,7 +84,9 @@
                 	</tr>
                 	<tr>
                 		<td>레벨</td>
-                		<td><input type="range" name="level" min="1" max="10"></td>
+                		<td><input type="range" name="level" min="1" max="10" value="0" oninput="document.getElementById('value1').innerHTML=this.value;">
+                		<span id="value1"></span>
+                		</td>
                 	</tr>
                 	<tr>
                 		<td></td>
