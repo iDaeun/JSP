@@ -4,6 +4,7 @@ import java.util.Date;
 
 //회원가입한 회원 정보 저장
 
+
 public class MemberInfo {
 	private String id;
 	private String pw;
