@@ -33,10 +33,10 @@
 <%
 	/* 			if(member.getPhoto() == null){
 					member.setPhoto("noimg");
-				}
+				} */
 			
 			application.setAttribute(member.getId(), member);
-			out.print("<h1>저장완료!</h1>"); */
+			out.print("<h1>저장완료!</h1>");
 %>
 
 <!-- ※※※DB 사용 후 -->

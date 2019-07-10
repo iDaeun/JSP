@@ -3,13 +3,17 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="member.LoginInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <jsp:useBean id="Login" class="member.LoginInfo" />
     
     <%
     Connection conn = null;
     Statement stmt = null;
     ResultSet rs = null;
+    int resultCnt = 0;
     
   	//JDBC_URL
   	String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:orcl";
@@ -56,72 +60,30 @@
 		margin: 10px;
 	}
 	
-	table{
-		width : 80%;
-		margin : 0 auto;
-		border : 0;
-		border-collapse: collapse;
-	}
 	
-	table td{
-		padding : 3px;
-		border : 1px solid black;
-	}
-
-	table tr:first-child>td {
-		text-align : center;
-		font-weight: bold;
-	}
 	
 </style>
 </head>
 <body>
 
 <div id="wrap">
-<h1>회원 리스트</h1>
+<h1>회원 탈퇴 완료</h1>
 
-<table>
-	<tr>
-		<td>번호</td>
-		<td>아이디</td>
-		<td>비밀번호</td>
-		<td>이름</td>
-		<td>전화번호</td>
-		<td>사진</td>
-		<td>레벨</td>
-		<td>가입날짜</td>
-	</tr>
-	
-	<!-- table 행 반복 시작 -->
+
 	<%
 		// 3. statement 객체 생성
 		stmt = conn.createStatement();
 		
-		String sql = "select * from SurfingMemberInfo order by idx";
+		String sql = "delete from SurfingMemberInfo where id ="+ Login.getId();
+		// 4. 로그인되어있는 아이디값 참고 -> DB에서 정보 삭제
+		resultCnt = stmt.executeUpdate(sql);
 		
-		// 4. sql 실행
-		rs = stmt.executeQuery(sql);
 		
-		// 5. 결과 출력
-		while (rs.next()){
 	%>
 	
-	<tr>
-		<td><a href="viewMem.jsp?idx=<%= rs.getInt("idx")%>"><%=rs.getInt(1) %></a></td>
-		<td><%=rs.getString(2) %></td>
-		<td><%=rs.getString(3) %></td>
-		<td><%=rs.getString(4) %></td>
-		<td><%=rs.getString(5) %></td>
-		<td><%=rs.getString(6) %></td>
-		<td><%=rs.getInt(7) %></td>
-		<td><%=rs.getDate(8) %></td>
-	</tr>
-	
-	<%
-		}
-	%>
-	<!-- table 행 반복 끝 -->
-</table>
+	<h3><%=resultCnt %>개 행이 삭제되었습니다</h3>
+	<a href="<%=request.getContextPath()%>">메인 페이지로 돌아가기</a>
+
 </div>
 </body>
 </html>

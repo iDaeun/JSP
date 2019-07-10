@@ -7,6 +7,8 @@
     pageEncoding="UTF-8"%>
     
     <%
+    String idx = request.getParameter("idx");
+    
     Connection conn = null;
     Statement stmt = null;
     ResultSet rs = null;
@@ -78,7 +80,7 @@
 <body>
 
 <div id="wrap">
-<h1>회원 리스트</h1>
+<h1>회원 정보</h1>
 
 <table>
 	<tr>
@@ -97,7 +99,7 @@
 		// 3. statement 객체 생성
 		stmt = conn.createStatement();
 		
-		String sql = "select * from SurfingMemberInfo order by idx";
+		String sql = "select * from SurfingMemberInfo where idx=" + idx;
 		
 		// 4. sql 실행
 		rs = stmt.executeQuery(sql);
@@ -107,7 +109,7 @@
 	%>
 	
 	<tr>
-		<td><a href="viewMem.jsp?idx=<%= rs.getInt("idx")%>"><%=rs.getInt(1) %></a></td>
+		<td><%=rs.getInt(1) %></td>
 		<td><%=rs.getString(2) %></td>
 		<td><%=rs.getString(3) %></td>
 		<td><%=rs.getString(4) %></td>

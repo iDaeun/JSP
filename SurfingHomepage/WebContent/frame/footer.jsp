@@ -5,6 +5,6 @@
 		<a href="http://www.naver.com">로그아웃</a>
 	</button>
 	<button>
-		<a href="#">회원탈퇴</a>
+		<a href="../member/deleteMem.jsp">회원탈퇴</a>
 	</button>
 </div>

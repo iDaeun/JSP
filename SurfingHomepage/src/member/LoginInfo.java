@@ -59,6 +59,10 @@ public class LoginInfo {
 		this.registerDate = registerDate;
 	}
 
+	
+	public String getId() {
+		return id;
+	}
 
 	@Override
 	public String toString() {
