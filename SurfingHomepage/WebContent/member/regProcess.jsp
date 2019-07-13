@@ -7,6 +7,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%
 	request.setCharacterEncoding("utf-8");
 %>
@@ -28,18 +29,18 @@
 	}
 %>
 
-<!-- ※※※DB 사용 전 -->
+<!-- ■■ VERSION #01 ■■ -->
 <!-- 2) 흐름상 정보 유지를 위해 회원정보는 application속성에 저장 -->
 <%
 	/* 			if(member.getPhoto() == null){
 					member.setPhoto("noimg");
-				} */
+				}
 			
 			application.setAttribute(member.getId(), member);
-			out.print("<h1>저장완료!</h1>");
+			out.print("<h1>저장완료!</h1>");  */
 %>
 
-<!-- ※※※DB 사용 후 -->
+<!-- ■■ VERSION #02 ■■ -->
 <!-- 회원정보 -> [DB]SurfingMemberInfo에 저장 -->
 <%
 	Connection conn = null;

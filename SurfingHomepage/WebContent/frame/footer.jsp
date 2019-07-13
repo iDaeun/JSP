@@ -2,9 +2,9 @@
 	pageEncoding="UTF-8"%>
 <div id="footer">
 	<button>
-		<a href="http://www.naver.com">로그아웃</a>
+		<a href="#">로그아웃</a>
 	</button>
 	<button>
-		<a href="../member/deleteMem.jsp">회원탈퇴</a>
+		<a href="/SurfingHomepage/member/deleteMemForm.jsp">회원탈퇴</a>
 	</button>
 </div>

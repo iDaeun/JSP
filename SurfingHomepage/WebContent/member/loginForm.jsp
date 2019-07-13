@@ -11,7 +11,6 @@
     <!-- 저장한 아이디 있으면 브라우저 재접속시 표시함 -->
     <%
     	String savedId = "";
-    	
     	Cookie[] c = request.getCookies();
     	for(int i=0; i<c.length; i++){
     		if(c[i].getName().equals("savedId")){
