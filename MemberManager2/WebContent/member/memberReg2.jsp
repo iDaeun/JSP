@@ -1,4 +1,4 @@
-<%@page import="member.MemberInfo"%>
+<%@page import="surfing.model.MemberInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -7,7 +7,7 @@
 %>
     
 <!-- 자바빈 사용 -->
-<jsp:useBean id="member" class="member.MemberInfo"/>
+<jsp:useBean id="member" class="surfing.model.MemberInfo"/>
 <jsp:setProperty property="*" name="member"/>
 	
 	<%

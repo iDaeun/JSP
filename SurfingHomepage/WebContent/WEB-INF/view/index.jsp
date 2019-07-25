@@ -10,7 +10,7 @@
     <title>Surfing Homepage</title>
     
 	<!-- css연결 -->
-	<link href="css/default.css" rel="stylesheet" type="text/css">
+	<link href="<c:url value="/css/default.css"/>"  rel="stylesheet" type="text/css">
 	<!-- 구글폰트 -->
     <link href="https://fonts.googleapis.com/css?family=Coiny&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
@@ -18,7 +18,7 @@
     <style>
       
     </style>
-    <script> src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <script>
     

@@ -1,4 +1,4 @@
-<%@page import="member.LoginInfo1"%>
+<%@page import="surfing.model.LoginInfo1"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	

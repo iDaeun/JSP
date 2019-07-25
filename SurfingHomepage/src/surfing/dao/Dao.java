@@ -1,0 +1,88 @@
+package surfing.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import surfing.model.MemberInfo;
+
+public class Dao {
+	// 싱글톤
+	private static Dao dao = new Dao();
+
+	public static Dao getInstance() {
+		return dao;
+	}
+
+	private Dao() {
+
+	}
+
+	// 아이디 -> 있으면 해당 객체 리턴 / 없으면 null 리턴
+	public MemberInfo searchMem(Connection conn, String id) {
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberInfo memberInfo = null;
+
+		String sql = "select * from SurfingMemberInfo where id = ?";
+
+		try {
+
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+
+				memberInfo = new MemberInfo();
+
+				memberInfo.setIdx(rs.getInt(1));
+				memberInfo.setId(rs.getString(2));
+				memberInfo.setPw(rs.getString(3));
+				memberInfo.setName(rs.getString(4));
+				memberInfo.setpNum(rs.getString(5));
+				memberInfo.setPhoto(rs.getString(6));
+				memberInfo.setLevel(rs.getInt(7));
+				memberInfo.setRegisterDate(rs.getTimestamp(8));
+
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return memberInfo;
+
+	}
+
+	// 회원정보 입력
+	public int insertMem(Connection conn, MemberInfo memberInfo) {
+
+		PreparedStatement pstmt = null;
+		int rCnt = 0;
+		String sql = "insert into SurfingMemberInfo values (smi_idx_seq.nextval,?,?,?,?,?,?,?)";
+
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, memberInfo.getId());
+			pstmt.setString(2, memberInfo.getPw());
+			pstmt.setString(3, memberInfo.getName());
+			pstmt.setString(4, memberInfo.getpNum());
+			pstmt.setString(5, memberInfo.getPhoto());
+			pstmt.setInt(6, memberInfo.getLevel());
+			pstmt.setTimestamp(7, memberInfo.getRegisterDate());
+
+			rCnt = pstmt.executeUpdate();
+			System.out.println("DAO"+rCnt);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return rCnt;
+	}
+
+}

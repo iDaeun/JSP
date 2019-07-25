@@ -1,11 +1,11 @@
-<%@page import="member.LoginInfo1"%>
+<%@page import="surfing.model.LoginInfo1"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.PreparedStatement"%>
-<%@page import="member.LoginInfo"%>
-<%@page import="member.MemberInfo"%>
+<%@page import="surfing.model.LoginInfo"%>
+<%@page import="surfing.model.MemberInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -13,16 +13,25 @@
 	request.setCharacterEncoding("utf-8");
 %>
 
+<%	
+	boolean chk = (boolean)request.getAttribute("chk");
+	
+	if(chk){
+		session.setAttribute("loginInfo", new LoginInfo1(request.getParameter("id"), request.getParameter("pw")));
+	}
+%>
+
 <!--     	로그인 데이터 받아 처리하기
 		▶ <loginProcess.jsp> 
 		1) 로그인 정보(id, pw) session속성에 저장
 		2) 아이디 저장 여부 체크 => 체크시 id cookie에 저장
 		3) 로그인 처리 후 메인페이지로 이동 -->
-<%
+<%-- <%
 	String id = request.getParameter("id");
 	String pw = request.getParameter("pw");
 	String checked = request.getParameter("save");
-%>
+	
+%> --%>
 
 
 <!--     
@@ -86,7 +95,7 @@
    	 	3) 없는 경우 : 오류 메시지 전달 -> 로그인 페이지로 이동
    	  -->
 
-<%
+<%-- <%
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	int resultCnt = 0;
@@ -188,5 +197,60 @@
 			}
 		}
 %>
+ --%>
+ 
+ <!-- ■■ VERSION #03 ■■ 
+ 	  MVC패턴으로 구현-->
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>LOGIN</title>
 
+	<!-- css연결 -->
+	<link href="<c:url value="/css/default.css"/>" rel="stylesheet" type="text/css">
+	<!-- 구글폰트 -->
+    <link href="https://fonts.googleapis.com/css?family=Coiny&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+    
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<style>
+</style>
+</head>
+<body>
+
+    <div id="main_wrap">
+        <!-- header 시작 -->
+		<%@include file="frame/header.jsp" %>
+        <!-- header 끝 -->
+
+        <!-- nav 시작 -->
+		<%@include file="frame/nav.jsp" %>
+        <!-- nav 끝 -->
+
+        <!-- context 시작 -->
+        <div id="context">
+            <div id="ct">
+                <h2>
+                <c:if test="${chk}">
+                	로그인되었습니다
+                	<%=session.getAttribute("loginInfo").toString() %>
+                </c:if>
+                
+                <c:if test="${!chk}">
+                	${msg }
+                </c:if>
+                </h2>
+                
+                <a href="<c:url value="/"/>">메인페이지로 돌아가기</a>
+            </div>
+        </div>
+        <!-- context 끝 -->
+
+        <!-- footer 시작 -->
+		<%@include file="frame/footer.jsp" %>
+        <!-- footer 끝 -->
+    </div>
+</body></html>
 

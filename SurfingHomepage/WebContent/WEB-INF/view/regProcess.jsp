@@ -3,7 +3,7 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
-<%@page import="member.MemberInfo"%>
+<%@page import="surfing.model.MemberInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -20,17 +20,17 @@
 		4) 로그인 페이지로 이동 -->
 
 <!-- 1) 전달받은 정보 <MemberInfo.java>에 저장 -->
-<jsp:useBean id="member" class="member.MemberInfo" />
+<%-- <jsp:useBean id="member" class="surfing.model.MemberInfo" />
 <jsp:setProperty property="*" name="member" />
 
 <%
-	if(member.getPhoto() == null){
+	if (member.getPhoto() == null) {
 		member.setPhoto("noimg");
 	}
 %>
-
+ --%>
 <!-- ■■ VERSION #01 ■■ -->
-<!-- 2) 흐름상 정보 유지를 위해 회원정보는 application속성에 저장 -->
+<!-- 2) 흐름상 정보 유지를 위해 회원정보는 application속성에 저장-->
 <%
 	/* 			if(member.getPhoto() == null){
 					member.setPhoto("noimg");
@@ -42,7 +42,7 @@
 
 <!-- ■■ VERSION #02 ■■ -->
 <!-- 회원정보 -> [DB]SurfingMemberInfo에 저장 -->
-<%
+<%-- <%
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	int resultCnt = 0;
@@ -90,7 +90,11 @@
 			}
 		}
 	}
-%>
+%> --%>
+
+<!-- ■■ VERSION #03 ■■ 
+	 MVC패턴 활용
+-->
 
 <!DOCTYPE html>
 <html>
@@ -100,7 +104,8 @@
 <title>Surfing Homepage</title>
 
 <!-- css연결 -->
-<link href="../css/default.css" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/default.css"/>" rel="stylesheet"
+	type="text/css">
 <!-- 구글폰트 -->
 <link href="https://fonts.googleapis.com/css?family=Coiny&display=swap"
 	rel="stylesheet">
@@ -122,34 +127,68 @@
 
 	<div id="main_wrap">
 		<!-- header 시작 -->
-		<%@include file="../frame/header.jsp"%>
+		<%@include file="frame/header.jsp"%>
 		<!-- header 끝 -->
 
 		<!-- nav 시작 -->
-		<%@include file="../frame/nav.jsp"%>
+		<%@include file="frame/nav.jsp"%>
 		<!-- nav 끝 -->
 
 		<!-- context 시작 -->
 		<div id="context">
 			<div id="ct">
+				
+				<c:if test="${rCnt>0}">
+				
 				<!-- 3) 회원가입된 정보 출력하기 -->
 				<h2>성공적으로 가입되었습니다!</h2>
 				<h2>가입정보:</h2>
 				${member.html()}
-				
-				
-				<h3><%=resultCnt %>개 행이 추가되었습니다!!</h3>
+
+
+				<h3>${rCnt}개 행이 추가되었습니다!!</h3>
+				<h4>
+					<c:if test="${IsPhoto}">
+						<div id="img_info">
+							<span style="font-weight: bold">저장한 이미지 출력</span> <br>
+							<div id="user_photo">
+								<img alt="사진" src="/lib/user_photo_upload/${user_photo_name}" />
+							</div>
+							파일 이름 : ${photo} ( ${fileSize} ) <br> 
+							파일 타입 : ${type}<br> 
+							저장 파일 이름 : ${savedPhoto}<br> 
+							저장 폴더 : ${dir}<br> 
+							저장 위치 : 
+							<c:if test="${memory }">
+							"메모리저장"
+							</c:if>
+							<c:if test="${!memory }">
+							"임시파일저장"
+							</c:if><br>
+							
+							<hr>
+							
+							<a id="move" href="<c:url value="/"/>">메인페이지로 돌아가기</a>
+						</div>
+					</c:if>
+
+				</h4>
+
 				<a href="smiList.jsp">관리자 -> LIST</a>
 
 				<!-- 4) 로그인 페이지로 이동 -->
-				<a href="loginForm.jsp">로그인하러가기</a>
-
+				<a href="loginForm">로그인하러가기</a>
+				</c:if>
+				
+				<c:if test="${rCnt<=0}">
+					<h3>회원가입 실패</h3>
+				</c:if>
 			</div>
 		</div>
 		<!-- context 끝 -->
 
 		<!-- footer 시작 -->
-		<%@include file="../frame/footer.jsp"%>
+		<%@include file="frame/footer.jsp"%>
 		<!-- footer 끝 -->
 	</div>
 </body>

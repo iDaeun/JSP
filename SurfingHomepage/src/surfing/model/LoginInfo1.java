@@ -1,4 +1,4 @@
-package member;
+package surfing.model;
 
 import java.util.Date;
 

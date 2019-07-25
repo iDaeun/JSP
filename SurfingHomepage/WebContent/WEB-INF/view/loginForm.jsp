@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <!--     	데이터 입력
 		▶ <loginForm.jsp> 
@@ -27,7 +28,7 @@
 <title>LOGIN</title>
 
 	<!-- css연결 -->
-	<link href="../css/default.css" rel="stylesheet" type="text/css">
+	<link href="<c:url value="/css/default.css"/>"  rel="stylesheet" type="text/css">
 	<!-- 구글폰트 -->
     <link href="https://fonts.googleapis.com/css?family=Coiny&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
@@ -40,18 +41,18 @@
 
     <div id="main_wrap">
         <!-- header 시작 -->
-		<%@include file="../frame/header.jsp" %>
+		<%@include file="frame/header.jsp" %>
         <!-- header 끝 -->
 
         <!-- nav 시작 -->
-		<%@include file="../frame/nav.jsp" %>
+		<%@include file="frame/nav.jsp" %>
         <!-- nav 끝 -->
 
         <!-- context 시작 -->
         <div id="context">
             <div id="ct">
                 <h2>LOGIN PAGE</h2>
-                <form action="loginProcess.jsp" action="post">
+                <form action="loginProcess" action="post">
                 <table>
                 	<tr>
                 		<td>아이디</td>
@@ -75,7 +76,7 @@
         <!-- context 끝 -->
 
         <!-- footer 시작 -->
-		<%@include file="../frame/footer.jsp" %>
+		<%@include file="frame/footer.jsp" %>
         <!-- footer 끝 -->
     </div>
 </body></html>
