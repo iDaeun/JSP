@@ -34,9 +34,10 @@ import surfing.service.SurfingService;
 	
 
 @WebServlet(
-		urlPatterns = { "/" }, 
+		urlPatterns = { "*.do" }, 
 		initParams = { 
-				@WebInitParam(name = "config", value = "/WEB-INF/commandService1.properties")
+				@WebInitParam(name = "config", 
+						value = "/WEB-INF/commandService1.properties")
 		})
 public class FrontController extends HttpServlet {
 

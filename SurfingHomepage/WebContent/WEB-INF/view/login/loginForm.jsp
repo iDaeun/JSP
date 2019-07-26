@@ -41,18 +41,18 @@
 
     <div id="main_wrap">
         <!-- header 시작 -->
-		<%@include file="frame/header.jsp" %>
+		<%@include file="../frame/header.jsp" %>
         <!-- header 끝 -->
 
         <!-- nav 시작 -->
-		<%@include file="frame/nav.jsp" %>
+		<%@include file="../frame/nav.jsp" %>
         <!-- nav 끝 -->
 
         <!-- context 시작 -->
         <div id="context">
             <div id="ct">
                 <h2>LOGIN PAGE</h2>
-                <form action="loginProcess" action="post">
+                <form action="loginProcess.do" action="post">
                 <table>
                 	<tr>
                 		<td>아이디</td>
@@ -76,7 +76,7 @@
         <!-- context 끝 -->
 
         <!-- footer 시작 -->
-		<%@include file="frame/footer.jsp" %>
+		<%@include file="../frame/footer.jsp" %>
         <!-- footer 끝 -->
     </div>
 </body></html>

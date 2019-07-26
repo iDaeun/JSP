@@ -17,7 +17,7 @@ public class LoginService implements SurfingService {
 	@Override
 	public String getViewName(HttpServletRequest request, HttpServletResponse response) {
 
-		String viewPage = "/WEB-INF/view/loginProcess.jsp";
+		String viewPage = "/WEB-INF/view/login/loginProcess.jsp";
 		
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");

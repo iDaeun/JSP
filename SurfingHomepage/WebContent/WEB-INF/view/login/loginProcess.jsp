@@ -222,11 +222,11 @@
 
     <div id="main_wrap">
         <!-- header 시작 -->
-		<%@include file="frame/header.jsp" %>
+		<%@include file="../frame/header.jsp" %>
         <!-- header 끝 -->
 
         <!-- nav 시작 -->
-		<%@include file="frame/nav.jsp" %>
+		<%@include file="../frame/nav.jsp" %>
         <!-- nav 끝 -->
 
         <!-- context 시작 -->
@@ -243,13 +243,13 @@
                 </c:if>
                 </h2>
                 
-                <a href="<c:url value="/"/>">메인페이지로 돌아가기</a>
+                <a href="../index.do">메인페이지로 돌아가기</a>
             </div>
         </div>
         <!-- context 끝 -->
 
         <!-- footer 시작 -->
-		<%@include file="frame/footer.jsp" %>
+		<%@include file="../frame/footer.jsp" %>
         <!-- footer 끝 -->
     </div>
 </body></html>

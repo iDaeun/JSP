@@ -8,7 +8,7 @@ public class RegFormService implements SurfingService {
 	@Override
 	public String getViewName(HttpServletRequest request, HttpServletResponse response) {
 
-		String viewPage = "/WEB-INF/view/regForm.jsp";
+		String viewPage = "/WEB-INF/view/reg/regForm.jsp";
 		
 		return viewPage;
 	}

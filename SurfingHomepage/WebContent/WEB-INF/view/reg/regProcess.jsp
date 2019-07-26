@@ -127,11 +127,11 @@
 
 	<div id="main_wrap">
 		<!-- header 시작 -->
-		<%@include file="frame/header.jsp"%>
+		<%@include file="../frame/header.jsp"%>
 		<!-- header 끝 -->
 
 		<!-- nav 시작 -->
-		<%@include file="frame/nav.jsp"%>
+		<%@include file="../frame/nav.jsp"%>
 		<!-- nav 끝 -->
 
 		<!-- context 시작 -->
@@ -152,7 +152,8 @@
 						<div id="img_info">
 							<span style="font-weight: bold">저장한 이미지 출력</span> <br>
 							<div id="user_photo">
-								<img alt="사진" src="/lib/user_photo_upload/${user_photo_name}" />
+								
+								<img alt="사진" src='<c:url value="/member_photo_upload/${savedPhoto}"/>' />
 							</div>
 							파일 이름 : ${photo} ( ${fileSize} ) <br> 
 							파일 타입 : ${type}<br> 
@@ -177,7 +178,7 @@
 				<a href="smiList.jsp">관리자 -> LIST</a>
 
 				<!-- 4) 로그인 페이지로 이동 -->
-				<a href="loginForm">로그인하러가기</a>
+				<a href="../member/loginForm.do">로그인하러가기</a>
 				</c:if>
 				
 				<c:if test="${rCnt<=0}">
@@ -188,7 +189,7 @@
 		<!-- context 끝 -->
 
 		<!-- footer 시작 -->
-		<%@include file="frame/footer.jsp"%>
+		<%@include file="../frame/footer.jsp"%>
 		<!-- footer 끝 -->
 	</div>
 </body>

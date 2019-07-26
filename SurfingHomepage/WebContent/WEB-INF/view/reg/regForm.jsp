@@ -23,7 +23,21 @@
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
     
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 <style>
+
+	#idCheck{
+		display: none;
+	}
+	.color_red{
+		color: red;
+		font-weight: bold;
+	}
+	.color_blue{
+		color: blue;
+		font-weight: bold;
+	}
+
 </style>
 
 <!--      <script type="text/javascript">
@@ -45,11 +59,11 @@
 
     <div id="main_wrap">
         <!-- header 시작 -->
-		<%@include file="frame/header.jsp" %>
+		<%@include file="../frame/header.jsp" %>
         <!-- header 끝 -->
 
         <!-- nav 시작 -->
-		<%@include file="frame/nav.jsp" %>
+		<%@include file="../frame/nav.jsp" %>
         <!-- nav 끝 -->
 
         <!-- context 시작 -->
@@ -57,14 +71,13 @@
             <div id="ct">
                 <h2>REGISTER PAGE</h2>
 					
-				<form action="regProcess" method="post" enctype="multipart/form-data">
+				<form action="regProcess.do" method="post" enctype="multipart/form-data">
 					<table>
                 	<tr>
                 		<td>아이디</td>
-                		<td>
-                		<input type="text" name="id">
-                		<!-- <input type="submit" value="중복체크" onclick="javascript: form.action='checkId.jsp';" />  --> 
-                		
+                		<td><input type="text" name="id" id="id"> <br>
+                			아이디 중복체크 <input type="checkbox" id="idCheck"> <br>
+                			<span id="idCheckSpan"></span>
                 		</td>
                 	</tr>
                 	<tr>
@@ -100,8 +113,35 @@
         <!-- context 끝 -->
 
         <!-- footer 시작 -->
-		<%@include file="frame/footer.jsp" %>
+		<%@include file="../frame/footer.jsp" %>
         <!-- footer 끝 -->
     </div>
-        
+ 
+ <script>
+ 	$(document).ready(function(){
+ 		
+ 		$('#id').focusout(function(){
+ 			
+ 		// 아이디 중복체크 -> AJAX
+ 	 		$.ajax({
+ 	 			
+ 	 			url: 'idCheck.do',
+ 	 			type: 'get',
+ 	 			data: { id: $(this).val() },
+ 	 			success: function(data){
+ 	 				
+ 	 				alert(data);
+ 	 				
+ 	 				$('#idCheckSpan').html('');
+ 	 				$('#idCheckSpan').remove
+ 	 				
+ 	 			}
+ 	 			
+ 	 		});
+ 			
+ 		});
+ 		
+ 	});
+ </script>
+ 
 </body></html>

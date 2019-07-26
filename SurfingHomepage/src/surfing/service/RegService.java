@@ -119,7 +119,7 @@ public class RegService implements SurfingService {
 							if (fileSize > 0) {
 
 								// 중복되지 않도록 이름 처리
-								savedPhoto = System.nanoTime() + "_" + photo;
+								savedPhoto = id + "_" + System.nanoTime();
 
 								// 파일 업로드
 								item.write(new File(dir, savedPhoto));
@@ -130,13 +130,13 @@ public class RegService implements SurfingService {
 								IsPhoto = true;
 								
 								request.setAttribute("IsPhoto", IsPhoto);
+								request.setAttribute("photo", photo);
 								request.setAttribute("savedPhoto", savedPhoto);
 								request.setAttribute("fileSize", fileSize);
 								request.setAttribute("type", type);
 								request.setAttribute("dir", dir);
 								request.setAttribute("memory", memory);
 								
-
 							}
 						}
 					}
@@ -162,7 +162,7 @@ public class RegService implements SurfingService {
 	@Override
 	public String getViewName(HttpServletRequest request, HttpServletResponse response) {
 
-		String viewPage = "/WEB-INF/view/regProcess.jsp";
+		String viewPage = "/WEB-INF/view/reg/regProcess.jsp";
 
 		// (2) 회원 정보 입력
 		Connection conn = null;

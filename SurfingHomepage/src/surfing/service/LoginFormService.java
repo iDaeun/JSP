@@ -8,7 +8,7 @@ public class LoginFormService implements SurfingService {
 	@Override
 	public String getViewName(HttpServletRequest request, HttpServletResponse response) {
 		
-		String viewName = "/WEB-INF/view/loginForm.jsp";
+		String viewName = "/WEB-INF/view/login/loginForm.jsp";
 		
 		return viewName;
 	}
