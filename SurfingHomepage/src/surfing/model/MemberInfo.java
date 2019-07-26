@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 
 
 public class MemberInfo {
+	private int idx;
 	private String id;
 	private String pw;
 	private String name;
@@ -15,18 +16,20 @@ public class MemberInfo {
 	private Timestamp registerDate;
 	
 	public MemberInfo() {
+		this.idx = 0;
+		this.photo = "none";
 		this.registerDate = new Timestamp(System.currentTimeMillis());
 	}
 	
-	public MemberInfo(String id, String pw, String name, String pNum, String photo, int level) {
-		this.id = id;
-		this.pw = pw;
-		this.name = name;
-		this.pNum = pNum;
-		this.photo = photo;
-		this.level = level;
-		this.registerDate = new Timestamp(System.currentTimeMillis());
-	}
+//	public MemberInfo(String id, String pw, String name, String pNum, String photo, int level) {
+//		this.id = id;
+//		this.pw = pw;
+//		this.name = name;
+//		this.pNum = pNum;
+//		this.photo = photo;
+//		this.level = level;
+//		this.registerDate = new Timestamp(System.currentTimeMillis());
+//	}
 
 
 	public String getId() {
@@ -98,6 +101,15 @@ public class MemberInfo {
 		this.registerDate = registerDate;
 	}
 	
+
+	public int getIdx() {
+		return idx;
+	}
+
+	public void setIdx(int idx) {
+		this.idx = idx;
+	}
+	
 	public String html() {
 		String str = "";
 		str += "<div id='html'> \n";
@@ -115,11 +127,10 @@ public class MemberInfo {
 		return str;
 	}
 
-	
 	@Override
 	public String toString() {
-		return "MemberInfo [id=" + id + ", pw=" + pw + ", name=" + name + ", pNum=" + pNum + ", photo=" + photo
-				+ ", level=" + level + ", registerDate=" + registerDate + "]";
+		return "MemberInfo [idx=" + idx + ", id=" + id + ", pw=" + pw + ", name=" + name + ", pNum=" + pNum + ", photo="
+				+ photo + ", level=" + level + ", registerDate=" + registerDate + "]";
 	}
 
 	public LoginInfo toLoginInfo() {
@@ -131,5 +142,5 @@ public class MemberInfo {
 	public boolean matchPassword(String pw) {
 		return this.pw.equals(pw);
 	}
-	
+
 }

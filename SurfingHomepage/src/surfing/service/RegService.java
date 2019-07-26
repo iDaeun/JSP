@@ -164,7 +164,6 @@ public class RegService implements SurfingService {
 
 		String viewPage = "/WEB-INF/view/regProcess.jsp";
 
-
 		// (2) 회원 정보 입력
 		Connection conn = null;
 		int rCnt = 0;

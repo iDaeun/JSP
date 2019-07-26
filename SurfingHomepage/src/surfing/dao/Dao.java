@@ -3,6 +3,7 @@ package surfing.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import surfing.model.MemberInfo;
 
@@ -58,9 +59,12 @@ public class Dao {
 
 	// 회원정보 입력
 	public int insertMem(Connection conn, MemberInfo memberInfo) {
-
+		
+		System.out.println("DAO"+memberInfo);
+		
 		PreparedStatement pstmt = null;
 		int rCnt = 0;
+		
 		String sql = "insert into SurfingMemberInfo values (smi_idx_seq.nextval,?,?,?,?,?,?,?)";
 
 		try {
@@ -76,11 +80,12 @@ public class Dao {
 			pstmt.setTimestamp(7, memberInfo.getRegisterDate());
 
 			rCnt = pstmt.executeUpdate();
+			
 			System.out.println("DAO"+rCnt);
 			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
 		
 		return rCnt;
 	}
