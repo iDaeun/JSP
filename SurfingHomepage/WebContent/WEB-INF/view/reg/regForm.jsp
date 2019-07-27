@@ -75,8 +75,8 @@
 					<table>
                 	<tr>
                 		<td>아이디</td>
-                		<td><input type="text" name="id" id="id"> <br>
-                			아이디 중복체크 <input type="checkbox" id="idCheck"> <br>
+                		<td><input type="text" name="id" id="id">
+                			<input type="checkbox" id="idCheck">
                 			<span id="idCheckSpan"></span>
                 		</td>
                 	</tr>
@@ -133,7 +133,18 @@
  	 				alert(data);
  	 				
  	 				$('#idCheckSpan').html('');
- 	 				$('#idCheckSpan').remove
+ 	 				$('#idCheckSpan').removeClass('color_red');
+ 	 				$('#idCheckSpan').removeClass('color_blue');
+ 	 				
+ 	 				if(data == 'Y'){
+ 	 					$('#idCheck').prop('checked', true);
+ 	 					$('#idCheckSpan').html('사용 가능한 아이디');
+ 	 					$('#idCheckSpan').addClass('color_blue');
+ 	 				} else {
+ 	 					$('#idCheck').prop('checked', false);
+ 	 					$('#idCheckSpan').html('사용 불가능한 아이디');
+ 	 					$('#idCheckSpan').addClass('color_red');
+ 	 				}
  	 				
  	 			}
  	 			

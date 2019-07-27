@@ -151,10 +151,11 @@
 					<c:if test="${IsPhoto}">
 						<div id="img_info">
 							<span style="font-weight: bold">저장한 이미지 출력</span> <br>
-							<div id="user_photo">
-								
-								<img alt="사진" src='<c:url value="/member_photo_upload/${savedPhoto}"/>' />
+							
+							<div id="user_photo">	
+							<img style="width: 200px" alt="사진" src='<c:url value="/member_photo_upload/${savedPhoto}"/>' />
 							</div>
+							
 							파일 이름 : ${photo} ( ${fileSize} ) <br> 
 							파일 타입 : ${type}<br> 
 							저장 파일 이름 : ${savedPhoto}<br> 
