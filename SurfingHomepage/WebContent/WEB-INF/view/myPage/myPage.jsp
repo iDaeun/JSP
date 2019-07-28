@@ -18,7 +18,17 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <style>
-
+	table{
+		width : 80%;
+		border : 0;
+		border-collapse: collapse;
+	}
+	table td{
+			padding : 5px;
+			border: solid 3px;
+			text-align: center;
+			background-color: rgba(178, 190, 195,0.5);
+		}
 </style>
 
 </head>
@@ -37,8 +47,6 @@
         <div id="context">
             <div id="ct">
                 <h2>MYPAGE</h2>
-                <c:out value="${memberInfo }"></c:out>
-					
 				<form action="#" method="post" enctype="multipart/form-data">
 					<table>
                 	<tr>
@@ -59,7 +67,16 @@
                 	</tr>
                 	<tr>
                 		<td>사진</td>
-                		<td><img style="width: 200px" alt="사진" src='<c:url value="/member_photo_upload/${memberInfo.photo}"/>' /></td>
+                		<td>
+						<c:choose>
+							<c:when test="${memberInfo.photo eq 'none' }">
+								<img style="width: 200px" alt="사진" src='<c:url value="/member_photo_upload/none.jpg"/>' />
+							</c:when>
+							<c:otherwise>
+								<img style="width: 200px" alt="사진" src='<c:url value="/member_photo_upload/${memberInfo.photo}"/>' />
+							</c:otherwise>
+						</c:choose>
+						</td>
                 	</tr>
                 	<tr>
                 		<td>레벨</td>

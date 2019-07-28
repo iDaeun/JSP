@@ -15,7 +15,7 @@
 			
 			<c:when test='${loginInfo.id eq "admin1"}'>
 			<!-- 관리자 -->
-			<li><a class="nav" href="">회원 목록</a></li>
+			<li><a class="nav" href="<c:url value='/admin/memList.do' />">회원 목록</a></li>
 			<li><a class="nav" href="">수업 목록</a></li>
 			</c:when>
 			

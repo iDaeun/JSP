@@ -28,7 +28,7 @@
 			
 			<c:when test='${loginInfo.id eq "admin1"}'>
 			<!-- 관리자 -->
-			<button>
+			<button onclick="logout();">
 				<a href="#">로그아웃</a>
 			</button>
 			</c:when>

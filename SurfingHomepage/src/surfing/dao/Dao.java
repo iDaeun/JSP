@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import surfing.model.MemberInfo;
 
@@ -59,16 +62,16 @@ public class Dao {
 
 	// 회원정보 입력
 	public int insertMem(Connection conn, MemberInfo memberInfo) {
-		
-		System.out.println("DAO"+memberInfo);
-		
+
+		System.out.println("DAO" + memberInfo);
+
 		PreparedStatement pstmt = null;
 		int rCnt = 0;
-		
+
 		String sql = "insert into SurfingMemberInfo values (smi_idx_seq.nextval,?,?,?,?,?,?,?)";
 
 		try {
-			
+
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, memberInfo.getId());
@@ -80,14 +83,51 @@ public class Dao {
 			pstmt.setTimestamp(7, memberInfo.getRegisterDate());
 
 			rCnt = pstmt.executeUpdate();
-			
-			System.out.println("DAO"+rCnt);
-			
+
+			System.out.println("DAO" + rCnt);
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} 
-		
+		}
+
 		return rCnt;
+	}
+
+	// 회원 전체 목록 뽑기
+	public List<MemberInfo> selectAllMem(Connection conn) {
+		
+		ResultSet rs = null;
+		List<MemberInfo> list = new ArrayList<MemberInfo>();
+
+		String sql = "select * from SurfingMemberInfo order by idx";
+
+		try {
+			
+			Statement stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+
+			while (rs.next()) {
+
+				MemberInfo memberInfo = new MemberInfo();
+
+				memberInfo.setIdx(rs.getInt(1));
+				memberInfo.setId(rs.getString(2));
+				memberInfo.setPw(rs.getString(3));
+				memberInfo.setName(rs.getString(4));
+				memberInfo.setpNum(rs.getString(5));
+				memberInfo.setPhoto(rs.getString(6));
+				memberInfo.setLevel(rs.getInt(7));
+				memberInfo.setRegisterDate(rs.getTimestamp(8));
+
+				list.add(memberInfo);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 
 }
