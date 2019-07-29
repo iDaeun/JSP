@@ -81,7 +81,7 @@
 	<c:forEach items="${list }" var="list">
 	<tr>
 		<td>${list.idx }</td>
-		<td><a href="viewMem.do?id=${list.id }">${list.id }</td>
+		<td><a href="viewMem.do?id=${list.id }">${list.id }</a></td>
 		<td>${list.pw }</td>
 		<td>${list.name }</td>
 		<td>${list.pNum }</td>
